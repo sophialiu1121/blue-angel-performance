@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Angel Performance | Ziyang Liu · Elite Running Coach · Seattle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fire: #D62839; --gold: #E8A900; --teal: #1A9E94; --navy: #0C0C1A;
+  --navy2: #13132A; --white: #FFFFFF; --off: #F5F4F0;
+  --slate: #6B7280; --slateL: #9CA3AF; --body: #374151;
+  --green: #15803D; --purple: #6D28D9;
+  --card: #FFFFFF; --border: #E5E7EB; --pagebg: #F7F8FC;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Outfit', sans-serif; background: var(--pagebg); color: var(--body); overflow-x: hidden; }
+img { max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ── UTILITY ── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.label {
+  font-family: 'Outfit', sans-serif; font-weight: 600;
+  font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: .9; margin-bottom: 1rem;
+  color: var(--navy);
+}
+.section-sub {
+  font-size: 1rem; font-weight: 300; color: var(--slate);
+  line-height: 1.75; max-width: 580px; margin-bottom: 2.5rem;
+}
+.pill {
+  display: inline-block;
+  font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; padding: .28rem .9rem;
+  border-radius: 2px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 12px rgba(0,0,0,.06);
+  height: 64px; display: flex; align-items: center;
+}
+.nav-inner {
+  width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem; letter-spacing: .06em; color: var(--navy);
+}
+.nav-logo span { color: var(--fire); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; }
+.nav-links a {
+  font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--slate);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--fire); }
+.nav-cta {
+  background: var(--fire); color: var(--white);
+  font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; padding: .55rem 1.4rem;
+  transition: background .2s;
+}
+.nav-cta:hover { background: #B71C2C; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh; padding-top: 64px;
+  background: var(--navy);
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 65% 40%, rgba(214,40,57,.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 15% 85%, rgba(26,158,148,.1) 0%, transparent 55%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(232,169,0,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,169,0,.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.hero-left {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8vw 4vw 6vw 8vw;
+}
+.hero-eyebrow {
+  font-size: .72rem; font-weight: 600; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.5rem; opacity: 0;
+  animation: fadeUp .6s .1s ease forwards;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  line-height: .88; text-transform: uppercase;
+  margin-bottom: 1.5rem; opacity: 0;
+  animation: fadeUp .6s .2s ease forwards;
+}
+.hero-title .l1 { color: var(--fire); display: block; }
+.hero-title .l2 { color: var(--white); display: block; }
+.hero-title .l3 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.18);
+  display: block;
+}
+.hero-line {
+  width: 56px; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--fire));
+  margin-bottom: 1.5rem; opacity: 0;
+  animation: fadeUp .6s .3s ease forwards;
+}
+.hero-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(255,255,255,.72); line-height: 1.75;
+  max-width: 400px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp .6s .35s ease forwards;
+}
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .6s .45s ease forwards;
+}
+.btn-fire {
+  background: var(--fire); color: var(--white);
+  font-size: .85rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; padding: .9rem 2rem;
+  transition: all .2s; display: inline-block;
+}
+.btn-fire:hover { background: #B71C2C; transform: translateY(-2px); }
+.btn-ghost {
+  border: 1.5px solid var(--gold); color: var(--gold);
+  font-size: .85rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; padding: .9rem 2rem;
+  transition: all .2s; display: inline-block;
+}
+.btn-ghost:hover { background: var(--gold); color: var(--navy); }
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3rem;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.07);
+  opacity: 0; animation: fadeUp .6s .55s ease forwards;
+}
+.hs-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; color: var(--gold); line-height: 1;
+}
+.hs-lbl {
+  font-size: .68rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+  margin-top: .2rem;
+}
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6vw 6vw 6vw 2vw;
+}
+.hero-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 2.5rem; width: 100%; max-width: 400px;
+  position: relative;
+  opacity: 0; animation: fadeUp .7s .3s ease forwards;
+}
+.hero-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--fire), var(--gold));
+}
+.hc-label {
+  font-size: .7rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+}
+.pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1.5rem; }
+.pr-item {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 1rem; text-align: center;
+}
+.pr-dist {
+  font-size: .65rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+  margin-bottom: .4rem;
+}
+.pr-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.9rem; color: var(--fire); line-height: 1;
+}
+.cred-list { display: flex; flex-direction: column; gap: .65rem; }
+.cred-item {
+  display: flex; align-items: flex-start; gap: .65rem;
+  font-size: .86rem; font-weight: 300; color: rgba(255,255,255,.78);
+  line-height: 1.4;
+}
+.cred-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 5px;
+}
+.cred-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+
+/* ── SECTIONS ── */
+section { padding: 7rem 0; }
+section:nth-child(even) { background: var(--white); }
+
+/* ── ABOUT ── */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-quote {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  color: var(--navy); line-height: 1.5;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--fire);
+}
+.about-body {
+  font-size: .97rem; font-weight: 300;
+  color: var(--body); line-height: 1.85; margin-bottom: 1.25rem;
+}
+.hi { color: var(--fire); font-weight: 600; }
+.cred-cards { display: flex; flex-direction: column; gap: .85rem; }
+.cred-card {
+  background: var(--pagebg); border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  padding: 1.1rem 1.4rem; transition: all .2s;
+}
+.cred-card:nth-child(2) { border-left-color: var(--gold); }
+.cred-card:nth-child(3) { border-left-color: var(--fire); }
+.cred-card:nth-child(4) { border-left-color: var(--purple); }
+.cred-card:hover { background: var(--white); transform: translateX(4px); }
+.cred-card h4 { font-size: .95rem; font-weight: 600; color: var(--navy); margin-bottom: .25rem; }
+.cred-card p { font-size: .82rem; font-weight: 300; color: var(--slate); }
+
+/* ── PROGRAMS ── */
+#programs { background: var(--pagebg); }
+.programs-row1 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 1.25rem; }
+.programs-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.prog-card {
+  background: var(--white); border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+}
+.prog-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+.prog-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.pc-fire::before { background: var(--fire); }
+.pc-gold::before { background: var(--gold); }
+.pc-teal::before { background: var(--teal); }
+.pc-purple::before { background: var(--purple); }
+.pc-green::before { background: var(--green); }
+.prog-body { padding: 1.75rem; }
+.prog-badge {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .25rem .75rem; margin-bottom: 1.1rem;
+}
+.pb-fire { background: var(--fire); color: var(--white); }
+.pb-gold { background: var(--gold); color: var(--navy); }
+.pb-teal { background: var(--teal); color: var(--white); }
+.pb-purple { background: var(--purple); color: var(--white); }
+.pb-green { background: var(--green); color: var(--white); }
+.prog-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: .03em;
+  color: var(--navy); margin-bottom: .65rem; line-height: 1.1;
+}
+.prog-card p { font-size: .85rem; font-weight: 300; color: var(--slate); line-height: 1.7; margin-bottom: 1.25rem; }
+.prog-price { display: flex; align-items: baseline; gap: .35rem; margin-bottom: 1.25rem; }
+.prog-price-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; }
+.prog-price-per { font-size: .78rem; color: var(--slateL); font-weight: 300; }
+.prog-feats { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.prog-feats li { font-size: .83rem; font-weight: 300; color: var(--body); display: flex; align-items: flex-start; gap: .5rem; }
+.prog-feats li::before { content: '→'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.ff::before { color: var(--fire); } .fg::before { color: var(--gold); }
+.ft::before { color: var(--teal); } .fp::before { color: var(--purple); }
+.fgr::before { color: var(--green); }
+.prog-cta {
+  display: block; text-align: center;
+  font-size: .8rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: .75rem;
+  border: 1.5px solid; transition: all .2s;
+}
+.cta-fire { border-color: var(--fire); color: var(--fire); }
+.cta-fire:hover { background: var(--fire); color: var(--white); }
+.cta-gold { border-color: var(--gold); color: var(--gold); }
+.cta-gold:hover { background: var(--gold); color: var(--navy); }
+.cta-teal { border-color: var(--teal); color: var(--teal); }
+.cta-teal:hover { background: var(--teal); color: var(--white); }
+.cta-purple { border-color: var(--purple); color: var(--purple); }
+.cta-purple:hover { background: var(--purple); color: var(--white); }
+.cta-green { border-color: var(--green); color: var(--green); }
+.cta-green:hover { background: var(--green); color: var(--white); }
+.sched-bar {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: #FFF8E7; border: 1px solid #F0D070;
+  padding: 1.75rem 2rem; gap: 1.5rem; text-align: center;
+  margin-top: 2rem;
+}
+.sb-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem; color: var(--gold); line-height: 1; margin-bottom: .28rem;
+}
+.sb-lbl {
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--slate);
+}
+
+/* ── PACE TABLE ── */
+#paces { background: var(--white); }
+.pace-tabs { display: flex; margin-bottom: 1.75rem; border-bottom: 1px solid var(--border); }
+.ptab {
+  font-size: .82rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: .75rem 1.75rem;
+  cursor: pointer; color: var(--slateL);
+  border-bottom: 2px solid transparent; transition: all .2s;
+  background: none; border-left: none; border-right: none; border-top: none;
+}
+.ptab.active { color: var(--fire); border-bottom-color: var(--fire); }
+.ptab:hover:not(.active) { color: var(--body); }
+.pw { display: none; }
+.pw.active { display: block; }
+.pace-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.pace-table th {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; background: var(--navy);
+  color: var(--white); padding: .85rem 1.1rem;
+  text-align: center; border-bottom: 2px solid rgba(255,255,255,.1);
+}
+.pace-table th:first-child { text-align: left; }
+.pace-table td {
+  padding: .75rem 1.1rem; text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-weight: 300; color: var(--body);
+}
+.pace-table td:first-child {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem; color: var(--fire); text-align: left;
+}
+.pace-table tr:nth-child(even) td { background: var(--pagebg); }
+.pace-table tr:hover td { background: #FFF1F2; }
+.pace-note {
+  font-size: .8rem; font-weight: 300; color: var(--slateL);
+  font-style: italic; margin-top: .85rem;
+  padding: .75rem 1rem; border-left: 2px solid var(--fire);
+  background: rgba(214,40,57,.04);
+}
+
+/* ── SPLIT TABLE ── */
+#splits { background: var(--pagebg); }
+.split-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.split-table th {
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; background: var(--navy2);
+  color: var(--white); padding: .8rem 1rem;
+  text-align: center; border-right: 1px solid rgba(255,255,255,.06);
+}
+.split-table th:first-child { text-align: left; }
+.split-table td {
+  padding: .8rem 1rem; text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  font-weight: 400; color: var(--body);
+}
+.split-table td:first-child { text-align: left; font-weight: 600; }
+.split-table tr:nth-child(even) td { background: var(--white); }
+.split-table tr:hover td { background: #F0FDFA; }
+.group-badge {
+  display: inline-block; font-size: .8rem; font-weight: 700;
+  padding: .22rem .75rem; border-radius: 2px;
+}
+
+/* ── SCIENCE ── */
+#science { background: var(--white); }
+.science-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2rem; }
+.sci-card {
+  background: var(--pagebg); border: 1px solid var(--border);
+  padding: 1.6rem; position: relative; overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.sci-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-3px); }
+.sci-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; transform: scaleX(0); transition: transform .25s; transform-origin: left;
+}
+.sci-card:hover::after { transform: scaleX(1); }
+.sc-teal::after { background: var(--teal); }
+.sc-orange::after { background: #E07B39; }
+.sc-fire::after { background: var(--fire); }
+.sc-purple::after { background: var(--purple); }
+.sc-green::after { background: var(--green); }
+.sci-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+  line-height: 1; opacity: .08; position: absolute; top: .8rem; right: 1rem;
+}
+.sci-card h4 {
+  font-size: 1rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; margin-bottom: .55rem;
+}
+.sci-card p { font-size: .82rem; font-weight: 300; color: var(--slate); line-height: 1.65; }
+.formula-bar {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: var(--navy); position: relative; overflow: hidden;
+}
+.formula-bar::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), #E07B39, var(--fire), var(--gold));
+}
+.fi { text-align: center; padding: 1.5rem 1rem; border-right: 1px solid rgba(255,255,255,.07); }
+.fi:last-child { border-right: none; }
+.fi-pct { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; line-height: 1; margin-bottom: .35rem; }
+.fi-name { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .25rem; }
+.fi-desc { font-size: .72rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+/* ── JOIN ── */
+#join { background: var(--pagebg); position: relative; overflow: hidden; }
+#join::before {
+  content: 'JOIN'; position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22vw; color: rgba(214,40,57,.035);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  white-space: nowrap; pointer-events: none; user-select: none;
+}
+.join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.join-opts { display: flex; flex-direction: column; gap: .85rem; }
+.join-opt {
+  background: var(--white); border: 1px solid var(--border);
+  padding: 1.35rem; display: flex; gap: 1.1rem; align-items: flex-start;
+  transition: border-color .2s, box-shadow .2s;
+}
+.join-opt:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+.jo-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .8rem; font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; letter-spacing: .04em;
+}
+.join-opt h4 { font-size: .95rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--navy); margin-bottom: .3rem; }
+.join-opt p { font-size: .82rem; font-weight: 300; color: var(--slate); line-height: 1.6; }
+.session-box {
+  padding: 1rem; background: #FFF8E7;
+  border: 1px solid rgba(232,169,0,.3);
+}
+.sb-head { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+.sb-body { font-size: .84rem; font-weight: 300; color: var(--body); line-height: 1.75; }
+.cform { display: flex; flex-direction: column; gap: .9rem; }
+.fg { display: flex; flex-direction: column; gap: .35rem; }
+.fg label { font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+.fg input, .fg select, .fg textarea {
+  background: var(--white); border: 1px solid var(--border);
+  color: var(--navy); padding: .8rem 1rem;
+  font-family: 'Outfit', sans-serif; font-size: .9rem;
+  font-weight: 300; outline: none; transition: border-color .2s; width: 100%;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--fire); box-shadow: 0 0 0 3px rgba(214,40,57,.08); }
+.fg select option { background: var(--white); color: var(--navy); }
+.fg textarea { resize: vertical; min-height: 110px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.fsub {
+  background: var(--fire); color: var(--white); border: none;
+  font-family: 'Outfit', sans-serif; font-size: .88rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; padding: 1rem 2.5rem;
+  cursor: pointer; transition: all .2s; align-self: flex-start; margin-top: .5rem;
+}
+.fsub:hover { background: #B71C2C; transform: translateY(-2px); }
+#fsuccess {
+  display: none; color: var(--teal); font-size: .85rem; font-weight: 600;
+  padding: .75rem 1rem; background: rgba(26,158,148,.06);
+  border: 1px solid rgba(26,158,148,.2);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 2.75rem 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .06em; color: var(--white); }
+.footer-logo span { color: var(--gold); }
+.footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.footer-links a { font-size: .78rem; font-weight: 300; color: rgba(255,255,255,.5); transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-copy { font-size: .72rem; font-weight: 300; color: rgba(255,255,255,.35); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .programs-row1 { grid-template-columns: 1fr; }
+  .programs-row2 { grid-template-columns: 1fr; }
+  .science-grid { grid-template-columns: 1fr 1fr; }
+  .formula-bar { grid-template-columns: 1fr 1fr; }
+  .join-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sched-bar { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  footer .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">BLUE ANGEL <span>PERFORMANCE</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#paces">Pace Guide</a></li>
+      <li><a href="#splits">Splits</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#join">Join</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">Join the Crew</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding:0;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Blue Angel Performance · Kirkland / Bellevue, WA</div>
+    <h1 class="hero-title">
+      <span class="l1">Speed</span>
+      <span class="l2">to Distance</span>
+      <span class="l3">Program</span>
+    </h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Science-based running and strength coaching. Olympic Trials qualifier, Ph.D. Exercise Physiology. Tuesday coached sessions — all levels welcome.</p>
+    <div class="hero-btns">
+      <a href="#programs" class="btn-fire">View Programs</a>
+      <a href="#join" class="btn-ghost">Join Tuesday Group</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-val">17:04</div><div class="hs-lbl">5K PR</div></div>
+      <div><div class="hs-val">2:38</div><div class="hs-lbl">Marathon</div></div>
+      <div><div class="hs-val">Ph.D.</div><div class="hs-lbl">Exercise Physiology</div></div>
+      <div><div class="hs-val">OTQ</div><div class="hs-lbl">Olympic Trials</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hc-label">Coach Personal Records</div>
+      <div class="pr-grid">
+        <div class="pr-item"><div class="pr-dist">5K</div><div class="pr-time">17:04</div></div>
+        <div class="pr-item"><div class="pr-dist">10K</div><div class="pr-time">35:40</div></div>
+        <div class="pr-item"><div class="pr-dist">Half</div><div class="pr-time">1:15</div></div>
+        <div class="pr-item"><div class="pr-dist">Marathon</div><div class="pr-time">2:38</div></div>
+      </div>
+      <div class="cred-list">
+        <div class="cred-item"><div class="cred-dot" style="background:var(--gold)"></div>Multiple-time Seattle Marathon Female Champion</div>
+        <div class="cred-item"><div class="cred-dot" style="background:var(--teal)"></div>Olympic Trials Marathon Qualifier</div>
+        <div class="cred-item"><div class="cred-dot" style="background:var(--fire)"></div>Ph.D. Exercise Physiology · UW Research Faculty</div>
+      </div>
+      <div class="cred-pills">
+        <span class="pill" style="background:rgba(214,40,57,.12);color:var(--fire);">Boston Elite</span>
+        <span class="pill" style="background:rgba(214,40,57,.12);color:var(--fire);">Chicago Elite</span>
+        <span class="pill" style="background:rgba(214,40,57,.12);color:var(--fire);">NYC Elite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="label" style="color:var(--fire)">The Founding Story</div>
+        <div class="about-quote">"I reached my ceiling as an elite runner. Now I give everything I learned to the next generation."</div>
+        <p class="about-body">Blue Angel Performance was built on a simple belief: <span class="hi">elite-level training science should not be reserved for elite athletes.</span> After qualifying for the Olympic Trials Marathon and completing a Ph.D. in Exercise Physiology at UW, the move to coaching was inevitable.</p>
+        <p class="about-body">The coaching philosophy was proven by results. One athlete improved their marathon by <span class="hi">over 40 minutes — from 4 hours to sub-3.</span> That athlete had no serious running background — which turned out to be the biggest advantage. No old habits. No ego about pace. Just clear instruction and willingness to trust the process.</p>
+        <p class="about-body"><span class="hi">Easier to adapt. Quicker to break old habits. Faster to improve.</span> Inspired by elite crew culture — CNW, Shenjing Bing — this summer we build speed. Then we build marathoners.</p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Built from<br><span style="color:var(--fire)">elite</span><br>experience.</h2>
+        <div class="cred-cards">
+          <div class="cred-card">
+            <h4>Multiple-time Seattle Marathon Female Champion</h4>
+            <p>Competing at the highest level of Pacific Northwest distance running</p>
+          </div>
+          <div class="cred-card">
+            <h4>Olympic Trials Marathon Qualifier</h4>
+            <p>Boston · Chicago · NYC elite invited entry · London · Berlin · Tokyo sub-elite</p>
+          </div>
+          <div class="cred-card">
+            <h4>Ph.D. in Exercise Physiology</h4>
+            <p>Doctorate-level science applied directly to every coaching decision</p>
+          </div>
+          <div class="cred-card">
+            <h4>UW Research Faculty · 5+ Years Coaching</h4>
+            <p>Active research at University of Washington · Marathon development specialist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="label reveal" style="color:var(--gold)">What We Offer</div>
+    <h2 class="section-title reveal">Programs &amp;<br><span style="color:var(--gold)">Coaching</span></h2>
+    <p class="section-sub reveal">From Tuesday group speed sessions to personal strength coaching — structured, science-based training for every level and goal.</p>
+
+    <div class="programs-row1">
+      <div class="prog-card pc-fire reveal">
+        <div class="prog-body">
+          <div class="prog-badge pb-fire">Most Popular</div>
+          <h3>Speed Training Group</h3>
+          <p>8–10 week coached speed program targeting 5K &amp; 10K performance. Science-based periodization with 6 pace groups.</p>
+          <div class="prog-price"><span class="prog-price-val" style="color:var(--fire)">$80</span><span class="prog-price-per">/ month</span></div>
+          <ul class="prog-feats ff">
+            <li>Tuesday coached track session</li>
+            <li>6:00 PM warm-up drills + running form</li>
+            <li>6:30 PM structured speed workout</li>
+            <li>1 self-guided workout per week</li>
+            <li>Weekly mileage guidance by group</li>
+          </ul>
+          <a href="#join" class="prog-cta cta-fire">Join Monthly</a>
+        </div>
+      </div>
+      <div class="prog-card pc-gold reveal">
+        <div class="prog-body">
+          <div class="prog-badge pb-gold">No Commitment</div>
+          <h3>Drop-In Session</h3>
+          <p>Join any Tuesday with no monthly commitment. Same science-based workout, same pace groups, same coaching quality.</p>
+          <div class="prog-price"><span class="prog-price-val" style="color:var(--gold)">$20</span><span class="prog-price-per">/ session</span></div>
+          <ul class="prog-feats fg">
+            <li>Single Tuesday track session</li>
+            <li>Full warm-up drills + coached workout</li>
+            <li>Pace group for your fitness level</li>
+            <li>No registration required</li>
+            <li>DM to confirm next session</li>
+          </ul>
+          <a href="#join" class="prog-cta cta-gold">Drop In Tuesday</a>
+        </div>
+      </div>
+      <div class="prog-card pc-teal reveal">
+        <div class="prog-body">
+          <div class="prog-badge pb-teal">Full Development</div>
+          <h3>Personal 1-on-1 Coaching</h3>
+          <p>Fully personalized training plan, weekly feedback, bi-weekly coaching calls, and race-specific periodization.</p>
+          <div class="prog-price"><span class="prog-price-val" style="color:var(--teal)">DM</span><span class="prog-price-per">for pricing</span></div>
+          <ul class="prog-feats ft">
+            <li>Custom 16–24 week periodized plan</li>
+            <li>Weekly written feedback + data review</li>
+            <li>Bi-weekly video coaching calls</li>
+            <li>Race strategy + goal-pace calibration</li>
+            <li>VO₂max &amp; LT assessment</li>
+          </ul>
+          <a href="#join" class="prog-cta cta-teal">Inquire 1-on-1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="programs-row2">
+      <div class="prog-card pc-purple reveal">
+        <div class="prog-body">
+          <div class="prog-badge pb-purple">Small Group · Max 5</div>
+          <h3>Personal Strength Coaching Group</h3>
+          <p>Small-group strength and conditioning designed specifically for runners. Maximum 5 athletes — individualized attention in a group setting. 4 in-person coached sessions per week plus 1 self-guided.</p>
+          <div class="prog-price"><span class="prog-price-val" style="color:var(--purple)">$120</span><span class="prog-price-per">/ month</span></div>
+          <ul class="prog-feats fp">
+            <li>4 in-person coached strength sessions per week</li>
+            <li>1 self-guided strength workout per week</li>
+            <li>Max 5 athletes — individualized coaching</li>
+            <li>Runner-specific: glutes, hip flexors, plyometrics</li>
+            <li>Injury prevention &amp; movement assessment</li>
+          </ul>
+          <a href="#join" class="prog-cta cta-purple">Join Strength Group</a>
+        </div>
+      </div>
+      <div class="prog-card pc-green reveal">
+        <div class="prog-body">
+          <div class="prog-badge pb-green">Best Value Bundle</div>
+          <h3>Speed + Strength Full Program</h3>
+          <p>Combine Tuesday speed group with personal strength coaching for the complete performance package. Integrated periodization — strength sessions scheduled around track days.</p>
+          <div class="prog-price"><span class="prog-price-val" style="color:var(--green)">$180</span><span class="prog-price-per">/ month · saves $20</span></div>
+          <ul class="prog-feats fgr">
+            <li>Everything in Speed Group ($80/mo)</li>
+            <li>Everything in Strength Group ($120/mo)</li>
+            <li>Integrated periodization — complements speed</li>
+            <li>Strength sessions around track days</li>
+            <li>Priority placement in both groups</li>
+          </ul>
+          <a href="#join" class="prog-cta cta-green">Join Full Program</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sched-bar reveal">
+      <div><div class="sb-val">Tuesday</div><div class="sb-lbl">Every week</div></div>
+      <div><div class="sb-val">6:00 PM</div><div class="sb-lbl">Warm-up &amp; drills</div></div>
+      <div><div class="sb-val">6:30 PM</div><div class="sb-lbl">Workout starts</div></div>
+      <div><div class="sb-val">5 max</div><div class="sb-lbl">Strength group size</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACE GUIDE -->
+<section id="paces">
+  <div class="container">
+    <div class="label reveal" style="color:var(--fire)">Training Reference</div>
+    <h2 class="section-title reveal">Target<br><span style="color:var(--fire)">Paces</span></h2>
+    <p class="section-sub reveal">Find your training zones by goal race. All paces in min/mile. Your coach confirms your group on Week 1.</p>
+
+    <div class="pace-tabs reveal">
+      <button class="ptab active" onclick="showP('5k',this)">5K Goals</button>
+      <button class="ptab" onclick="showP('10k',this)">10K Goals</button>
+    </div>
+
+    <div class="pw active" id="pw-5k">
+      <table class="pace-table">
+        <thead><tr><th>Goal 5K</th><th>Easy / LT1</th><th>Tempo / LT2</th><th>5K Interval</th><th>Mile Pace</th></tr></thead>
+        <tbody>
+          <tr><td>17–18 min</td><td>7:15–8:03</td><td>6:02–6:21</td><td>5:31–5:47</td><td>~5:05</td></tr>
+          <tr><td>19–21 min</td><td>8:03–8:51</td><td>6:32–6:59</td><td>6:09–6:32</td><td>~5:45</td></tr>
+          <tr><td>22–24 min</td><td>8:51–9:39</td><td>7:15–7:38</td><td>6:52–7:15</td><td>~6:23</td></tr>
+          <tr><td>25–28 min</td><td>9:39–10:28</td><td>7:58–8:13</td><td>7:05–8:03</td><td>~7:03</td></tr>
+          <tr><td>29–35 min</td><td>10:28–12:04</td><td>8:51–9:25</td><td>8:22–9:15</td><td>~8:03</td></tr>
+        </tbody>
+      </table>
+      <div class="pace-note">Paces are starting guides — your coach adjusts each Tuesday based on your performance. Not sure which row? Show up and we'll place you on session one.</div>
+    </div>
+
+    <div class="pw" id="pw-10k">
+      <table class="pace-table">
+        <thead><tr><th>Goal 10K</th><th>Easy / LT1</th><th>Tempo / LT2</th><th>10K Interval</th><th>5K Interval</th></tr></thead>
+        <tbody>
+          <tr><td>35–37 min</td><td>7:15–8:03</td><td>6:09–6:26</td><td>5:41–5:58</td><td>5:18–5:38</td></tr>
+          <tr><td>38–42 min</td><td>8:03–8:51</td><td>6:36–7:03</td><td>6:09–6:36</td><td>5:51–6:22</td></tr>
+          <tr><td>43–48 min</td><td>8:51–9:39</td><td>7:03–7:38</td><td>6:39–7:38</td><td>6:26–6:59</td></tr>
+          <tr><td>49–56 min</td><td>9:39–10:28</td><td>8:03–8:35</td><td>7:38–8:51</td><td>7:03–8:03</td></tr>
+          <tr><td>57–70 min</td><td>10:28–12:04</td><td>9:09–9:39</td><td>9:15–10:20</td><td>8:22–9:09</td></tr>
+        </tbody>
+      </table>
+      <div class="pace-note">Paces are starting guides — your coach adjusts each Tuesday based on your performance. Not sure which row? Show up and we'll place you on session one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVAL SPLITS -->
+<section id="splits">
+  <div class="container">
+    <div class="label reveal" style="color:var(--teal)">Interval Reference</div>
+    <h2 class="section-title reveal">Pace Group<br><span style="color:var(--teal)">Splits</span></h2>
+    <p class="section-sub reveal">Per-400m splits for each interval distance. All 6 pace groups run the same session — at their own speed. Group placed on Week 1.</p>
+
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="split-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Group</th>
+            <th>Goal 5K</th>
+            <th>1600m <small style="opacity:.6;font-weight:400;">(per 400)</small></th>
+            <th>1200m <small style="opacity:.6;font-weight:400;">(per 400)</small></th>
+            <th>800m <small style="opacity:.6;font-weight:400;">(per 400)</small></th>
+            <th>400m <small style="opacity:.6;font-weight:400;">(per 400)</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(232,169,0,.12);color:var(--gold);">Group A</span></td>
+            <td>sub-22</td><td>1:41</td><td>1:38–1:39</td><td>1:36–1:37</td><td>1:31–1:34</td>
+          </tr>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(224,123,57,.12);color:#E07B39;">Group B</span></td>
+            <td>22–23:30</td><td>1:49</td><td>1:46–1:47</td><td>1:44–1:45</td><td>1:39–1:42</td>
+          </tr>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(214,40,57,.1);color:var(--fire);">Group C</span></td>
+            <td>23:30–25</td><td>1:58</td><td>1:55–1:56</td><td>1:53–1:54</td><td>1:48–1:51</td>
+          </tr>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(26,158,148,.1);color:var(--teal);">Group D</span></td>
+            <td>25–28</td><td>2:13</td><td>2:10–2:11</td><td>2:08–2:09</td><td>2:03–2:05</td>
+          </tr>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(109,40,217,.1);color:var(--purple);">Group E</span></td>
+            <td>~30 min</td><td>2:25</td><td>2:22–2:23</td><td>2:20–2:21</td><td>2:15–2:19</td>
+          </tr>
+          <tr>
+            <td><span class="group-badge" style="background:rgba(107,114,128,.1);color:var(--slate);">Group F</span></td>
+            <td>33+ min</td><td>—</td><td>3:00–3:01</td><td>2:58–2:59</td><td>2:53–2:56</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pace-note reveal" style="margin-top:1rem;border-left-color:var(--teal);background:rgba(26,158,148,.04);">
+      All intervals use 90 sec jog recovery. Pyramid workout: 400 → 800 → 1200 → 1 mile → 1200 → 800 → 400m. Groups run together — pace set per group.
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="science">
+  <div class="container">
+    <div class="label reveal" style="color:var(--teal)">The Science</div>
+    <h2 class="section-title reveal">Training<br><span style="color:var(--teal)">Science</span></h2>
+    <p class="section-sub reveal">Understanding these five systems is the difference between training hard and training smart. Every session targets one or more deliberately.</p>
+
+    <div class="science-grid">
+      <div class="sci-card sc-teal reveal">
+        <div class="sci-num" style="color:var(--teal)">01</div>
+        <h4 style="color:var(--teal)">LT1 — Aerobic Threshold</h4>
+        <p>~2 mmol/L lactate. The conversational pace you could sustain for hours. Raising LT1 raises your aerobic engine permanently. Elite marathoners race only 10–15% above their LT1. Trained by Zone 2 easy runs and long runs.</p>
+      </div>
+      <div class="sci-card sc-orange reveal">
+        <div class="sci-num" style="color:#E07B39">02</div>
+        <h4 style="color:#E07B39">LT2 — Lactate Threshold</h4>
+        <p>~4 mmol/L. Fastest sustainable pace for 30–60 minutes. Directly determines 10K to marathon race pace. Trained by tempo runs and cruise intervals — the cornerstone of competitive distance running.</p>
+      </div>
+      <div class="sci-card sc-fire reveal">
+        <div class="sci-num" style="color:var(--fire)">03</div>
+        <h4 style="color:var(--fire)">VO₂max</h4>
+        <p>Your aerobic ceiling. vVO₂max ≈ 5K race pace. Interval sessions push the ceiling higher. +8–12% gain in 8 weeks. Trained by Billat 30/30s and 4-minute reps. Limit to once per week.</p>
+      </div>
+      <div class="sci-card sc-purple reveal">
+        <div class="sci-num" style="color:var(--purple)">04</div>
+        <h4 style="color:var(--purple)">Fatigue Resistance</h4>
+        <p>The ability to hold pace when everything hurts. Trained by long runs with pace finishes, back-to-back sessions, and pre-fatigued intervals. Separates runners who race from those who survive.</p>
+      </div>
+      <div class="sci-card sc-green reveal" style="grid-column:span 2;">
+        <div class="sci-num" style="color:var(--green)">05</div>
+        <h4 style="color:var(--green)">Fat vs. Carbohydrate Metabolism</h4>
+        <p>Glycogen lasts ~90–120 min. Fat stores fuel 20+ hours. The wall is glycogen depletion — fat metabolism delays it. Trained by Zone 2 volume and fasted runs. At race intensity, carbohydrate is the primary fuel. Elite runners are metabolically flexible: burning fat efficiently at 70–75% VO₂max and switching to carbs at race pace. <strong>The 80/20 rule:</strong> 80% of training at LT1 or below. This is what makes the 20% hard work effective.</p>
+      </div>
+    </div>
+
+    <div class="formula-bar reveal">
+      <div class="fi"><div class="fi-pct" style="color:var(--teal)">80%</div><div class="fi-name" style="color:var(--teal)">LT1 + Fat</div><div class="fi-desc">Easy runs, long runs, Zone 2 — the foundation</div></div>
+      <div class="fi"><div class="fi-pct" style="color:#E07B39">10%</div><div class="fi-name" style="color:#E07B39">LT2 Tempo</div><div class="fi-desc">Tempo runs, cruise intervals</div></div>
+      <div class="fi"><div class="fi-pct" style="color:var(--fire)">5%</div><div class="fi-name" style="color:var(--fire)">VO₂max</div><div class="fi-desc">High-intensity intervals, once/week</div></div>
+      <div class="fi"><div class="fi-pct" style="color:var(--purple)">5%</div><div class="fi-name" style="color:var(--purple)">Fatigue</div><div class="fi-desc">Race simulations, pre-fatigued sessions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="container">
+    <div class="label reveal" style="color:var(--fire)">Ready to Run?</div>
+    <h2 class="section-title reveal">Join the<br><span style="color:var(--fire)">Crew</span></h2>
+    <div class="join-grid">
+      <div class="reveal">
+        <p class="section-sub">Every great running culture starts with someone deciding to build one. Show up Tuesday. We'll figure out the rest.</p>
+        <div class="join-opts">
+          <div class="join-opt">
+            <div class="jo-icon" style="background:rgba(214,40,57,.1);color:var(--fire);">$80</div>
+            <div><h4>Speed Group · $80/month</h4><p>Tuesday coached track session + 1 self-guided workout/week + weekly mileage guidance.</p></div>
+          </div>
+          <div class="join-opt">
+            <div class="jo-icon" style="background:rgba(232,169,0,.1);color:var(--gold);font-size:.8rem;">DROP IN</div>
+            <div><h4>Drop-In · $20/session</h4><p>Join any Tuesday with zero commitment. DM to confirm next session date and track location.</p></div>
+          </div>
+          <div class="join-opt">
+            <div class="jo-icon" style="background:rgba(109,40,217,.1);color:var(--purple);font-size:.75rem;">STRENGTH</div>
+            <div><h4>Strength Group · $120/month</h4><p>4 in-person coached sessions/week + 1 self-guided. Max 5 athletes. Runner-specific programming.</p></div>
+          </div>
+          <div class="join-opt">
+            <div class="jo-icon" style="background:rgba(21,128,61,.1);color:var(--green);font-size:.75rem;">BUNDLE</div>
+            <div><h4>Speed + Strength · $180/month</h4><p>Complete performance package. Speed Tuesday + strength 4×/week. $20 saving vs separate.</p></div>
+          </div>
+          <div class="session-box">
+            <div class="sb-head">Session Details</div>
+            <div class="sb-body">
+              📍 Tuesday every week · 6:00 PM warm-up · 6:30 PM workout<br>
+              📍 Kirkland/Bellevue area track — location confirmed via DM<br>
+              📍 All paces welcome — pace groups formed Week 1<br>
+              📩 blue-angelperformance.org
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="cform" onsubmit="handleSub(event)">
+          <div class="frow">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="First name" required></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Last name" required></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+          <div class="fg">
+            <label>Current 5K time</label>
+            <select>
+              <option value="">Select your range</option>
+              <option>Under 22 min</option><option>22–25 min</option><option>25–28 min</option>
+              <option>28–33 min</option><option>33+ min</option><option>I don't know yet</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Interested in</label>
+            <select>
+              <option value="">Select a program</option>
+              <option>Speed Group — $80/month</option>
+              <option>Drop-in — $20/session</option>
+              <option>Personal Strength Coaching — $120/month</option>
+              <option>Speed + Strength Bundle — $180/month</option>
+              <option>1-on-1 personal coaching</option>
+              <option>Just finding out more</option>
+            </select>
+          </div>
+          <div class="fg"><label>Goals / Message</label><textarea placeholder="Tell us about your running goals, fitness background, or anything else we should know..."></textarea></div>
+          <button type="submit" class="fsub">Send Message →</button>
+          <div id="fsuccess">✓ Message sent! We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">BLUE ANGEL <span>PERFORMANCE</span></div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#paces">Pace Guide</a>
+        <a href="#splits">Splits</a>
+        <a href="#science">Science</a>
+        <a href="#join">Join</a>
+        <a href="https://blue-angelperformance.org">blue-angelperformance.org</a>
+      </div>
+      <div class="footer-copy">© 2026 Blue Angel Performance · Kirkland, WA · Coach: Ziyang Liu</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showP(tab, btn) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pw').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pw-' + tab).classList.add('active');
+}
+function handleSub(e) {
+  e.preventDefault();
+  document.getElementById('fsuccess').style.display = 'block';
+  e.target.reset();
+}
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--fire)' : '';
+  });
+});
+</script>
+</body>
+</html>
